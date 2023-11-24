@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqd3r10sxbae2"]
+
+[ext_resource type="Script" path="res://script/snake.gd" id="1_dhsuh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2fn1o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tnecg"]
+albedo_color = Color(0.564706, 0.0470588, 0.247059, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6hmgt"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+
+[node name="Snake" type="RigidBody3D"]
+lock_rotation = true
+script = ExtResource("1_dhsuh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_2fn1o")
+surface_material_override/0 = SubResource("StandardMaterial3D_tnecg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_6hmgt")

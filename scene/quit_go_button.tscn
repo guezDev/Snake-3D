@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://h1viqa1fcxl1"]
+
+[node name="QuitGOButton" type="Button"]
+size_flags_vertical = 3
+text = "Quit"

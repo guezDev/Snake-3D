@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqd3r10sxbae2"]
+
+[ext_resource type="Script" path="res://script/snake.gd" id="1_dhsuh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2fn1o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tnecg"]
+albedo_color = Color(0.564706, 0.0470588, 0.247059, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0pfce"]
+margin = 0.0
+
+[node name="Snake" type="Area3D"]
+script = ExtResource("1_dhsuh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_2fn1o")
+surface_material_override/0 = SubResource("StandardMaterial3D_tnecg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shape = SubResource("BoxShape3D_0pfce")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

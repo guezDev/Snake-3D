@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://bgqrhwd7x2y00"]
+
+[ext_resource type="PackedScene" uid="uid://dqd3r10sxbae2" path="res://scene/snake.tscn" id="1_vw625"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_amy8q"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_yl1bw"]
+sky_material = SubResource("ProceduralSkyMaterial_amy8q")
+
+[sub_resource type="Environment" id="Environment_v37aq"]
+background_mode = 2
+sky = SubResource("Sky_yl1bw")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ecem0"]
+size = Vector2(10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_urn1c"]
+albedo_color = Color(0.627451, 0.905882, 0.380392, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_lveat"]
+data = PackedVector3Array(5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5)
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_v37aq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.96366, -0.266955, -0.00976726, 0.0107649, 0.00227389, 0.99994, -0.266917, -0.963706, 0.005065, -0.0595318, 9.7429, -0.0234064)
+
+[node name="Garden" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_ecem0")
+surface_material_override/0 = SubResource("StandardMaterial3D_urn1c")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Garden"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Garden/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_lveat")
+
+[node name="Snake" parent="Garden" instance=ExtResource("1_vw625")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.98973, 0, -4.49294)

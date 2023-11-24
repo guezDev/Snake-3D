@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dadlmxbq7v1q2"]
+
+[ext_resource type="Script" path="res://script/apple.gd" id="1_05x7j"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_t548e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2fnsw"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a2hv8"]
+
+[node name="Apple" type="StaticBody3D"]
+script = ExtResource("1_05x7j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_t548e")
+surface_material_override/0 = SubResource("StandardMaterial3D_2fnsw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_a2hv8")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
