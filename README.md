@@ -8,7 +8,7 @@ Jeu vidéo Snake 3D, développé avec Godot 4
 
 - Manger pomme : augmentation taille, vitesse et score
   
-- Apparition de la pomme sur une position non occupée par le serpent
+- Apparition de la pomme à une position non occupée par le serpent
   
 - Si le serpent sort du jardin par un côté, il entre progressivement par le
   côté opposé
